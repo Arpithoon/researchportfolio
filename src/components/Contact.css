@@ -1,0 +1,130 @@
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+.contact {
+  border-top: 1px solid var(--border);
+}
+
+.contact__header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin-bottom: 64px;
+}
+
+.contact__heading {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-heading);
+  font-family: var(--font-sans);
+}
+
+.contact__heading-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.contact__body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 44ch;
+}
+
+/* Contact list */
+.contact__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.contact__item {
+  border-bottom: 1px solid var(--border);
+}
+
+.contact__link {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 0;
+  text-decoration: none;
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) var(--ease),
+    padding-left var(--duration-base) var(--ease);
+  position: relative;
+}
+
+.contact__link:hover {
+  color: var(--text-heading);
+  padding-left: 8px;
+}
+
+.contact__link-label {
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.contact__link-text {
+  font-size: 14px;
+  flex: 1;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.contact__link:hover .contact__link-text {
+  color: var(--accent);
+}
+
+.contact__link-arrow {
+  font-size: 14px;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease);
+  color: var(--accent);
+}
+
+.contact__link:hover .contact__link-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Entrance animation */
+.contact__header,
+.contact__list {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-slow) var(--ease),
+    transform var(--duration-slow) var(--ease);
+}
+
+.contact__list {
+  transition-delay: 0.12s;
+}
+
+.contact.is-visible .contact__header,
+.contact.is-visible .contact__list {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact__link {
+    gap: 16px;
+  }
+
+  .contact__link-label {
+    width: 60px;
+  }
+
+  .contact__link-text {
+    font-size: 13px;
+    word-break: break-word;
+  }
+}

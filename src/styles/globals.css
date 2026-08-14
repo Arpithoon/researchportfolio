@@ -1,0 +1,225 @@
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Colors */
+  ----bg: #000000;
+  --bg-soft: #111114;
+  --surface: #161618;
+  --surface-raised: #1c1c1f;
+
+  --text-primary: #c8c2b8;
+  --text-secondary: #7a7570;
+  --text-muted: #4a4744;
+  --text-heading: #e2ddd6;
+
+  --accent: #6b8cae;
+  --accent-dim: rgba(107, 140, 174, 0.15);
+  --accent-border: rgba(107, 140, 174, 0.25);
+
+  --border: rgba(255, 255, 255, 0.07);
+  --border-soft: rgba(255, 255, 255, 0.04);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Consolas, monospace;
+
+  /* Spacing */
+  --container: 1100px;
+  --section-v: 120px;
+  --nav-h: 64px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 180ms;
+  --duration-base: 280ms;
+  --duration-slow: 500ms;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.label {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 48px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 20px;
+  }
+}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+.section {
+  padding-block: var(--section-v);
+}
+
+.section-header {
+  margin-bottom: 64px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   FADE-IN ANIMATION
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeUp var(--duration-slow) var(--ease) forwards;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+.divider {
+  height: 1px;
+  background: var(--border);
+  border: none;
+}
+
+/* ============================================================
+   SKIP LINK (ACCESSIBILITY)
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: top var(--duration-fast) var(--ease);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+html,
+body,
+#root,
+.site {
+  background: #000000;
+}

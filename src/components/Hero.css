@@ -1,0 +1,217 @@
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  padding-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Very subtle background warmth that echoes the trajectory colours */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 60% at 68% 48%,
+    rgba(160, 50, 180, 0.045) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+/* ── Layout ──────────────────────────────────────────────── */
+.hero__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding-block: 40px ;
+}
+
+/* ── Content (left) ─────────────────────────────────────── */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  animation: fadeUp 0.7s var(--ease) both;
+}
+
+.hero__eyebrow {
+ .hero__eyebrow {
+  color: var(--accent);
+}
+
+}
+
+/* Large, confident, editorial headline */
+.hero__headline {
+  font-size: clamp(52px, 6.5vw, 88px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  color: var(--text-heading);
+  font-family: var(--font-sans);
+}
+
+.hero__headline-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  /* Slightly lighter than the sans "Questions" for tonal contrast */
+  opacity: 0.92;
+}
+
+.hero__body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 38ch;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-heading);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 13px 26px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease),
+    border-color     var(--duration-fast) var(--ease),
+    color            var(--duration-fast) var(--ease),
+    transform        var(--duration-fast) var(--ease);
+  margin-top: 4px;
+}
+
+.hero__cta:hover {
+  background-color: var(--surface);
+  border-color: rgba(180, 80, 200, 0.35);
+  color: #fff;
+}
+
+.hero__cta:active {
+  transform: scale(0.98);
+}
+
+.hero__cta-arrow {
+  font-size: 14px;
+  transition: transform var(--duration-fast) var(--ease);
+}
+
+.hero__cta:hover .hero__cta-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ── Visual wrapper (right) ─────────────────────────────── */
+.hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.9s 0.15s var(--ease) both;
+  /* Let the image bleed a little into the edges — gives an immersive feel */
+  margin-right: -32px;
+}
+
+/* Trajectory image — blends naturally because the image bg is pure black
+   and the site bg is near-black. mix-blend-mode: screen makes the black
+   transparent so the magenta strands float directly over the page.       */
+.hero__trajectory {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: screen;
+  /* Slight scale-up so the trajectory fills more of the allocated space */
+  transform: scale(1.5);
+  transform-origin: center center;
+  /* Prevent crisp aliased edges when the browser scales */
+  image-rendering: auto;
+  /* No borders, no box, no background */
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+/* ── Particle canvas ─────────────────────────────────────── */
+.hero__particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Canvas sits above the image */
+  z-index: 2;
+}
+
+/* ── Entrance animation (shared with globals) ────────────── */
+/* (fadeUp is defined in globals.css) */
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero__trajectory {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-block: 64px;
+  }
+
+  .hero__visual {
+    /* Image appears below text on mobile */
+    order: 1;
+    margin-right: 0;
+    justify-content: center;
+  }
+
+  .hero__trajectory {
+    max-width: 380px;
+    transform: scale(1.02);
+  }
+
+  .hero__headline {
+    font-size: clamp(44px, 10vw, 68px);
+  }
+
+  .hero__body {
+    max-width: 52ch;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__trajectory {
+    max-width: 300px;
+  }
+
+  .hero__headline {
+    font-size: clamp(40px, 11vw, 60px);
+  }
+
+  .hero__body {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero__trajectory {
+    max-width: 260px;
+  }
+}
